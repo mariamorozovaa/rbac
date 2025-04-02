@@ -5,7 +5,8 @@ import type { MenuProps } from 'antd';
 import { Typography, Image } from 'antd';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import {TableOutlined, WarningOutlined, ProfileOutlined, CheckCircleOutlined} from '@ant-design/icons';
-import TableUser from "./Users"
+import TableUser from "../../Users"
+import Link from 'next/link'
 
 const { Header, Content, Sider } = Layout;
 
@@ -28,9 +29,9 @@ function getItem(
 
 const items: MenuItem[] = [
   getItem('Заявки', 'request', <TableOutlined/>, [
-    getItem('Входящие', 'request/incoming'),
-    getItem('Исходящие', 'request/outgoing'),
-    getItem('Все заявки', 'request/all'),
+    getItem('Входящие', 'incoming'),
+    getItem('Исходящие', 'outgoing'),
+    getItem('Все заявки', 'all'),
   ]),
   getItem('Управление', '5', < ProfileOutlined/>, [
     getItem('Пользователи', '6'),
@@ -65,11 +66,16 @@ const IncomingRequest: React.FC = () => {
     <Layout>
       <Header style={{ display: 'flex', alignItems: 'center', paddingLeft: 28 }}>
     <div className="demo-logo" />
-    <Image 
-      width={35}
-      preview={false}
-      src="/./favicon.ico"/>
-      <Title level={3} style={{ display: 'flex', alignItems: 'center', padding: '0 0 0 1rem', margin: 0, color: colorBgContainer }}>RBAC</Title>
+    <Link href={'/'} style={{display: 'flex'}}
+    >
+      <Image 
+    width={35}
+    preview={false}
+    src="/./favicon.ico"/>
+    <Title level={3} style={{ display: 'flex', alignItems: 'center', padding: '0 0 0 1rem', margin: 0, color: colorBgContainer }}>
+      RBAC
+    </Title>
+    </Link>
   </Header>
     <Layout style={{ minHeight: '100vh' }}>
       <Sider style={{ background: colorBgContainer }} collapsible 
@@ -101,6 +107,7 @@ const IncomingRequest: React.FC = () => {
               borderRadius: borderRadiusLG,
             }}
           >
+          <TableUser/>
 
           </div>
         </Content>
