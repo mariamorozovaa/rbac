@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table } from 'antd';
 import type { TableColumnsType, TableProps } from 'antd';
+import { usersdata } from './users'
 
 interface DataType {
   key: React.Key;
@@ -59,30 +60,12 @@ const columns: TableColumnsType<DataType> = [
   },
 ];
 
-const data: DataType[] = [
-  {
-    key: '1',
-    name: 'Иванов Иван Иванович',
-    rang: 'Программист',
-    place: 'Группа обеспечения испытаний',
-    address: 'ivanov-ii@rosenergoatom.ru',
-  },
-  {
-    key: '2',
-    name: 'Петров Петр Петрович',
-    rang: 'Программист',
-    place: 'Отдел сопровождения порталов',
-    address: 'petrov-pp@rosenergoatom.ru',
-  },
- 
-];
-
 const onChange: TableProps<DataType>['onChange'] = (pagination, filters, sorter, extra) => {
   console.log('params', pagination, filters, sorter, extra);
 };
 
 const TableUser: React.FC = () => (
-  <Table<DataType> columns={columns} dataSource={data} onChange={onChange} />
+  <Table<DataType> columns={columns} dataSource={usersdata} onChange={onChange} />
 );
 
 export default TableUser;
