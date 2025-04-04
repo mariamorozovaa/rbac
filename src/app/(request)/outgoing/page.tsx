@@ -1,16 +1,12 @@
 "use client";
 
-import { useRouter } from 'next/navigation';
-import type { MenuProps } from 'antd';
-import { Typography, Image } from 'antd';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
-import {TableOutlined, WarningOutlined, ProfileOutlined, CheckCircleOutlined} from '@ant-design/icons';
+import { Typography } from 'antd';
+import { Breadcrumb, Layout, theme } from 'antd';
 import TableUserTest from '../../Table';
-import Link from 'next/link'
 import AppHeader from '@/components/AppHeader';
 import AppSider from '@/components/AppSider';
 
-const { Header, Content, Sider } = Layout;
+const { Header, Content } = Layout;
 
 const OutGoingRequest: React.FC = () => {
 
@@ -18,11 +14,6 @@ const OutGoingRequest: React.FC = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   const { Title } = Typography;
-
-  const onClick: MenuProps['onClick'] = (e) => {
-    console.log(e)
-
-  };
 
   return (
     <Layout style={{ minHeight: '100vh' }}>

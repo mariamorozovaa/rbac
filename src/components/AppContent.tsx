@@ -1,11 +1,10 @@
 "use client";
 
 import { Breadcrumb, Layout, theme } from 'antd';
-import { useRouter } from 'next/navigation';
 import { Typography } from 'antd';
 
 
-const { Header, Content, Sider } = Layout;
+const { Header, Content } = Layout;
 
 export default function AppContent () {
 

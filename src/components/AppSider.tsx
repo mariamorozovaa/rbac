@@ -2,8 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import type { MenuProps } from 'antd';
-import { Typography } from 'antd';
-import { Layout, Menu, theme } from 'antd';
+import { Layout, Menu } from 'antd';
 import {TableOutlined, WarningOutlined, ProfileOutlined, CheckCircleOutlined} from '@ant-design/icons';
 
 const siderStyle: React.CSSProperties = {
@@ -57,10 +56,6 @@ const items: MenuItem[] = [
 
 const AppSider: React.FC = () => {
   const router = useRouter();
-
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
 
   return (
     

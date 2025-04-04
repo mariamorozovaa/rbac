@@ -1,13 +1,12 @@
 "use client";
 
-import type { MenuProps } from 'antd';
-import { Typography, Image } from 'antd';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import { Typography } from 'antd';
+import { Breadcrumb, Layout, theme } from 'antd';
 import  TableUser  from "../../UsersTable"
 import AppSider from '../../../components/AppSider'
 import AppHeader from '../../../components/AppHeader'
 
-const { Header, Content, Sider } = Layout;
+const { Header, Content } = Layout;
 
 export default function IncomingRequest () {
 
