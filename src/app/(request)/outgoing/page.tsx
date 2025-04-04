@@ -2,7 +2,7 @@
 
 import { Typography } from 'antd';
 import { Breadcrumb, Layout, theme } from 'antd';
-import TableUserTest from '../../Table';
+import TableUser from '../../../components/UsersTable';
 import AppHeader from '@/components/AppHeader';
 import AppSider from '@/components/AppSider';
 
@@ -22,10 +22,16 @@ const OutGoingRequest: React.FC = () => {
       <AppSider/>
       <Layout>
         <Header style={{ paddingLeft: 16, background: colorBgContainer, height: '100px' }}> 
-        <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Заявки</Breadcrumb.Item>
-            <Breadcrumb.Item>Исходящие</Breadcrumb.Item>
-          </Breadcrumb>
+        <Breadcrumb style={{ margin: '16px 0' }}
+    items={[
+      {
+        title: <a href="/">Заявки</a>,
+      },
+      {
+        title: 'Исходящие',
+      },
+    ]}
+  />
         <Title level={4}>Исходящие заявки</Title>
         </Header>
         <Content style={{ margin: '0 16px', paddingTop:'16px' }}>
@@ -37,7 +43,7 @@ const OutGoingRequest: React.FC = () => {
               borderRadius: borderRadiusLG,
             }}
           >
-          <TableUserTest/>
+          <TableUser/>
 
           </div>
         </Content>

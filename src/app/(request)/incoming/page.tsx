@@ -2,7 +2,7 @@
 
 import { Typography } from 'antd';
 import { Breadcrumb, Layout, theme } from 'antd';
-import  TableUser  from "../../UsersTable"
+import  TableUser  from "../../../components/UsersTable"
 import AppSider from '../../../components/AppSider'
 import AppHeader from '../../../components/AppHeader'
 
@@ -21,10 +21,16 @@ export default function IncomingRequest () {
       <AppSider/>
       <Layout>
         <Header style={{ paddingLeft: 16, background: colorBgContainer, height: '100px' }}> 
-        <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Заявки</Breadcrumb.Item>
-            <Breadcrumb.Item>Входящие</Breadcrumb.Item>
-          </Breadcrumb>
+            <Breadcrumb style={{ margin: '16px 0' }}
+    items={[
+      {
+        title: <a href="/">Заявки</a>,
+      },
+      {
+        title: 'Входящие',
+      },
+    ]}
+  />
         <Typography.Title level={4}>Входящие заявки</Typography.Title>
         </Header>
         <Content style={{ margin: '0 16px', paddingTop:'16px' }}>

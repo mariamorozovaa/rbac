@@ -15,10 +15,16 @@ export default function AppContent () {
   return (
       <Layout>
         <Header style={{ paddingLeft: 16, background: colorBgContainer, height: '100px' }}> 
-        <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Главная</Breadcrumb.Item>
-            <Breadcrumb.Item>Заявки</Breadcrumb.Item>
-          </Breadcrumb>
+        <Breadcrumb style={{ margin: '16px 0' }}
+    items={[
+      {
+        title: 'Главная',
+      },
+      {
+        title: 'Заявки',
+      },
+    ]}
+  />
         <Typography.Title level={4}>Главная</Typography.Title>
         </Header>
         <Content style={{ margin: '0 16px', paddingTop:'16px' }}>
