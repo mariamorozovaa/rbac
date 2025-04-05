@@ -5,6 +5,7 @@ import { Breadcrumb, Layout, theme } from 'antd';
 import  TableUser  from "../../tables/UsersTable"
 import AppSider from '../../../components/AppSider'
 import AppHeader from '../../../components/AppHeader'
+import Link from 'next/link'
 
 const { Header, Content } = Layout;
 
@@ -24,7 +25,7 @@ export default function IncomingRequest () {
             <Breadcrumb style={{ margin: '16px 0' }}
     items={[
       {
-        title: <a href="/">Заявки</a>,
+        title: <Link href="/">Заявки</Link>,
       },
       {
         title: 'Все заявки',

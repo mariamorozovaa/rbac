@@ -4,12 +4,16 @@ import { Layout, Typography, Breadcrumb, theme, Card, Col, Row } from 'antd';
 import AppSider from '../components/AppSider'
 import AppHeader from '../components/AppHeader'
 import { Button, Flex } from 'antd';
-import { Divider, List } from 'antd';
+import { List } from 'antd';
+import { useRouter } from 'next/navigation';
+
 
 export default function AppLayout () {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+    const router = useRouter();
+  
 
   const data = [
     'Racing car sprays burning fuel into crowd.',
@@ -47,12 +51,14 @@ export default function AppLayout () {
               borderRadius: borderRadiusLG,
               marginBottom: 24
             }}
-          > <Flex gap="small" wrap style={{gap: 24, display: 'flex', }}>
+          > 
+        <Flex gap="small" wrap style={{gap: 24, display: 'flex', }}>
           <Button type="primary">Запросить доступ для себя</Button>
           <Button type="primary">Запросить доступ для других</Button>
           <Button type="primary">Отозвать доступ</Button>
           <Button type="primary">Мои доступы</Button>
         </Flex>
+
           </div>
           <Row gutter={16}>
     <Col span={12}>
