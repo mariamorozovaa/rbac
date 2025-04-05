@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'antd';
 import type { TableColumnsType, TableProps } from 'antd';
-import { usersdata } from '../app/users'
+import { usersdata } from '../users'
 
 interface DataType {
   key: React.Key;

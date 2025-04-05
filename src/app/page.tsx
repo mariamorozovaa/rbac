@@ -47,7 +47,7 @@ export default function AppLayout () {
               borderRadius: borderRadiusLG,
               marginBottom: 24
             }}
-          > <Flex gap="small" wrap style={{gap: 50, display: 'flex', }}>
+          > <Flex gap="small" wrap style={{gap: 24, display: 'flex', }}>
           <Button type="primary">Запросить доступ для себя</Button>
           <Button type="primary">Запросить доступ для других</Button>
           <Button type="primary">Отозвать доступ</Button>

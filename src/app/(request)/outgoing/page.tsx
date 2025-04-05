@@ -2,7 +2,7 @@
 
 import { Typography } from 'antd';
 import { Breadcrumb, Layout, theme } from 'antd';
-import TableUser from '../../../components/UsersTable';
+import  TableUser  from "../../tables/UsersTable"
 import AppHeader from '@/components/AppHeader';
 import AppSider from '@/components/AppSider';
 
