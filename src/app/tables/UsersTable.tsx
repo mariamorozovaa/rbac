@@ -1,7 +1,8 @@
 import React from 'react';
-import { Table } from 'antd';
+import { Table, Pagination } from 'antd';
 import type { TableColumnsType, TableProps } from 'antd';
 import { usersdata } from '../users'
+import { useState } from 'react'
 
 interface DataType {
   key: React.Key;
@@ -10,6 +11,7 @@ interface DataType {
   rang: string;
   place: string;
 }
+
 
 const columns: TableColumnsType<DataType> = [
   {
@@ -60,12 +62,30 @@ const columns: TableColumnsType<DataType> = [
   },
 ];
 
-const onChange: TableProps<DataType>['onChange'] = (pagination, filters, sorter, extra) => {
-  console.log('params', pagination, filters, sorter, extra);
+const TableUser: React.FC = () => {
+  const [pageSize, setPageSize] = useState<number>(10);
+
+  const handlePageSizeChange = (current: number, size: number) => {
+    setPageSize(size);
+  };
+
+  return (
+    <Table<DataType>
+      dataSource={usersdata}
+      columns={columns}
+      pagination={{
+        pageSize: pageSize,
+        showSizeChanger: true,
+        pageSizeOptions: ['10', '20', '50', '100'],
+        onShowSizeChange: handlePageSizeChange,
+        showTotal: (total, range) => `Показано ${range[0]}-${range[1]} из ${total} записей`,
+        locale: {
+          items_per_page: `/ стр`,
+        }
+      }}
+    />
+  );
 };
 
-const TableUser: React.FC = () => (
-  <Table<DataType> columns={columns} dataSource={usersdata} onChange={onChange} />
-);
-
 export default TableUser;
+

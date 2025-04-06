@@ -1,10 +1,10 @@
 "use client";
 
 import { Typography, Image, Space,Badge } from 'antd';
-import { Layout, theme } from 'antd';
+import { Layout, theme, Dropdown } from 'antd';
 import Link from 'next/link'
-import { UserOutlined, BellOutlined } from '@ant-design/icons';
-import { Avatar } from 'antd';
+import { UserOutlined, BellOutlined, SettingOutlined } from '@ant-design/icons';
+import { Avatar, MenuProps } from 'antd';
 
 
 const { Header } = Layout;
@@ -24,6 +24,28 @@ export default function AppHeader () {
     
   ];
 
+  const items: MenuProps['items'] = [
+    {
+      key: '1',
+      label: 'Мой аккаунт',
+      disabled: true,
+    },
+    {
+      type: 'divider',
+    },
+    {
+      key: '2',
+      label: 'Профиль',
+      icon: <UserOutlined />
+    },
+
+    {
+      key: '3',
+      label: 'Настройки',
+      icon: <SettingOutlined />,
+    },
+  ];
+
   return (
     <Layout>
       <Header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 28 }}>
@@ -41,9 +63,15 @@ export default function AppHeader () {
       <Badge count={5}>
         <BellOutlined style={{ color: colorBgContainer, fontSize: 24}}/>
       </Badge>
-   
-    <Avatar style={{ backgroundColor: '#1677ff'}} shape="circle" icon={<UserOutlined />} />
-    <Text style = {{color: colorBgContainer}}>Иванов И.И.</Text>
+      <Dropdown menu={{ items }}>
+    <a onClick={(e) => e.preventDefault()}>
+      <Space>
+      <Avatar style={{ backgroundColor: '#1677ff'}} shape="circle" icon={<UserOutlined />} />
+      <Text style = {{color: colorBgContainer}}>Иванов И.И.</Text>
+      </Space>
+    </a>
+  </Dropdown>
+    
   </div>
 
     </Header>
