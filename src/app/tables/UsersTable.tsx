@@ -1,8 +1,8 @@
 import React from 'react';
 import { Table } from 'antd';
 import type { TableColumnsType } from 'antd';
-import { usersdata } from '../users'
-import { useState } from 'react'
+import { usersdata } from '../users';
+import { useState } from 'react';
 
 interface DataType {
   key: React.Key;
@@ -11,7 +11,6 @@ interface DataType {
   rang: string;
   place: string;
 }
-
 
 const columns: TableColumnsType<DataType> = [
   {
@@ -26,7 +25,6 @@ const columns: TableColumnsType<DataType> = [
         text: 'Петров',
         value: 'Петров',
       },
-    
     ],
     filterMode: 'tree',
     filterSearch: true,
@@ -58,7 +56,6 @@ const columns: TableColumnsType<DataType> = [
   {
     title: 'Почта',
     dataIndex: 'address',
-    
   },
 ];
 
@@ -81,11 +78,10 @@ const TableUser: React.FC = () => {
         showTotal: (total, range) => `Показано ${range[0]}-${range[1]} из ${total} записей`,
         locale: {
           items_per_page: `/ стр`,
-        }
+        },
       }}
     />
   );
 };
 
 export default TableUser;
-

@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
 import React from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input, Flex } from 'antd';
-import Link from 'next/link'
+import Link from 'next/link';
 
 const Login: React.FC = () => {
   const onFinish = (values: string | number) => {
@@ -42,10 +42,8 @@ const Login: React.FC = () => {
         <Button block type="primary" htmlType="submit">
           Log in
         </Button>
-    
-    or 
-    <Link href="./registration">Register now!</Link>
-
+        or
+        <Link href="./registration">Register now!</Link>
       </Form.Item>
     </Form>
   );

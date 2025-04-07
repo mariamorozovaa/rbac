@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
 import { useRouter, usePathname } from 'next/navigation';
 import { Layout, Menu, MenuProps } from 'antd';
-import { 
-  TableOutlined, 
-  ProfileOutlined, 
-  WarningOutlined, 
-  CheckCircleOutlined 
+import {
+  TableOutlined,
+  ProfileOutlined,
+  WarningOutlined,
+  CheckCircleOutlined,
 } from '@ant-design/icons';
 import { useState, useMemo, useCallback } from 'react';
 
@@ -18,28 +18,27 @@ const AppSider = () => {
 
   const [items, parentMap] = useMemo(() => {
     const parentMap = new Map<string, string>();
-    
+
     const getItem = (
       label: string,
       key: string,
       icon?: React.ReactNode,
       children?: MenuItem[]
     ): MenuItem => {
-
       if (children) {
-        children.forEach(child => {
+        children.forEach((child) => {
           if (child && child.key) {
             parentMap.set(child.key as string, key);
           }
         });
       }
-      
-      return { 
+
+      return {
         key,
         icon,
         children,
         label,
-        type: children ? 'subMenu' : 'item'
+        type: children ? 'subMenu' : 'item',
       } as MenuItem;
     };
 
@@ -73,31 +72,34 @@ const AppSider = () => {
     const parentKey = currentKey ? parentMap.get(currentKey) : null;
     return {
       current: currentKey || '',
-      openKeys: parentKey ? [parentKey] : ['request']
+      openKeys: parentKey ? [parentKey] : ['request'],
     };
   });
 
-  const handleMenuClick = useCallback(({ key }: { key: string }) => {
-    setMenuState({
-      current: key,
-      openKeys: [parentMap.get(key) || 'request']
-    });
-    router.push(`/${key}`);
-  }, [parentMap, router]);
+  const handleMenuClick = useCallback(
+    ({ key }: { key: string }) => {
+      setMenuState({
+        current: key,
+        openKeys: [parentMap.get(key) || 'request'],
+      });
+      router.push(`/${key}`);
+    },
+    [parentMap, router]
+  );
 
   const handleOpenChange = useCallback((keys: string[]) => {
-    setMenuState(prev => ({
+    setMenuState((prev) => ({
       ...prev,
-      openKeys: keys.length ? [keys[keys.length - 1]] : []
+      openKeys: keys.length ? [keys[keys.length - 1]] : [],
     }));
   }, []);
 
   return (
-    <Layout.Sider 
-      width={250} 
+    <Layout.Sider
+      width={250}
       collapsible
-      theme='light'
-      style={{ 
+      theme="light"
+      style={{
         overflow: 'auto',
         height: '100vh',
         position: 'sticky',
@@ -171,7 +173,7 @@ export default AppSider;
 //   // useEffect(() => {
 //   //   const pathParts = pathname.split('/').filter(Boolean);
 //   //   if (pathParts.length > 0) {
-//   //     const key = pathParts[0]; 
+//   //     const key = pathParts[0];
 //   //     setSelectedKeys([key]);
 
 //   //     if (pathParts.length > 1) {
@@ -189,11 +191,11 @@ export default AppSider;
 //   // };
 
 //   return (
-//     <Layout.Sider 
-//       width={250} 
+//     <Layout.Sider
+//       width={250}
 //       collapsible
 //       theme='light'
-//       style={{ 
+//       style={{
 //         overflow: 'auto',
 //         height: '100vh',
 //         position: 'sticky',
