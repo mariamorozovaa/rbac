@@ -5,14 +5,12 @@ import AppSider from '../components/AppSider'
 import AppHeader from '../components/AppHeader'
 import { Button, Flex } from 'antd';
 import { List } from 'antd';
-import { useRouter } from 'next/navigation';
 
 
 export default function AppLayout () {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-    const router = useRouter();
   
 
   const data = [

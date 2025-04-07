@@ -10,7 +10,6 @@ import { Button, Upload, Flex } from 'antd';
 import type { UploadFile } from 'antd';
 import type { GetProps } from 'antd';
 import { Input, Space } from 'antd';
-import previewImg from './preview.png';
 
 const { Header, Content } = Layout;
 type SearchProps = GetProps<typeof Input.Search>;

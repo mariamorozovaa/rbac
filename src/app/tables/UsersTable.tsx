@@ -1,6 +1,6 @@
 import React from 'react';
-import { Table, Pagination } from 'antd';
-import type { TableColumnsType, TableProps } from 'antd';
+import { Table } from 'antd';
+import type { TableColumnsType } from 'antd';
 import { usersdata } from '../users'
 import { useState } from 'react'
 

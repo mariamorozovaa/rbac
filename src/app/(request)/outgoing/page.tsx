@@ -5,6 +5,7 @@ import { Breadcrumb, Layout, theme } from 'antd';
 import  TableUser  from "../../tables/UsersTable"
 import AppHeader from '@/components/AppHeader';
 import AppSider from '@/components/AppSider';
+import Link from 'next/link';
 
 const { Header, Content } = Layout;
 
@@ -25,7 +26,7 @@ const OutGoingRequest: React.FC = () => {
         <Breadcrumb style={{ margin: '16px 0' }}
     items={[
       {
-        title: <a href="/">Заявки</a>,
+        title: <Link href="/">Заявки</Link>,
       },
       {
         title: 'Исходящие',

@@ -17,13 +17,6 @@ export default function AppHeader () {
     token: { colorBgContainer },
   } = theme.useToken();
 
-  const data = [
-    {
-      title: 'Иванов И. И.',
-    },
-    
-  ];
-
   const items: MenuProps['items'] = [
     {
       key: '1',

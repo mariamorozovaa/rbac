@@ -4,7 +4,7 @@ import { Button, Checkbox, Form, Input, Flex } from 'antd';
 import Link from 'next/link'
 
 const Login: React.FC = () => {
-  const onFinish = (values: any) => {
+  const onFinish = (values: string | number) => {
     console.log('Received values of form: ', values);
   };
 
