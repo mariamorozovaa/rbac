@@ -1,52 +1,54 @@
 'use client';
 
-import React from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input, Flex } from 'antd';
-import Link from 'next/link';
+import { Button, Form, Input, Card, message } from 'antd';
+import { useRouter } from 'next/navigation';
+import React from 'react';
 
-const Login: React.FC = () => {
-  const onFinish = (values: string | number) => {
-    console.log('Received values of form: ', values);
+const LoginPage: React.FC = () => {
+  const router = useRouter();
+
+  const onFinish = (values: { username: string; password: string }) => {
+    if (values.username === 'admin' && values.password === 'admin') {
+      message.success('Авторизация успешна!');
+      // Сохраняем статус авторизации в localStorage
+      localStorage.setItem('isAuthenticated', 'true');
+      router.push('/');
+    } else {
+      message.error('Неверные учетные данные!');
+    }
   };
 
   return (
-    <Form
-      name="login"
-      initialValues={{ remember: true }}
-      style={{ maxWidth: 360 }}
-      onFinish={onFinish}
-    >
-      <Form.Item
-        name="username"
-        rules={[{ required: true, message: 'Please input your Username!' }]}
-      >
-        <Input prefix={<UserOutlined />} placeholder="Username" />
-      </Form.Item>
-      <Form.Item
-        name="password"
-        rules={[{ required: true, message: 'Please input your Password!' }]}
-      >
-        <Input prefix={<LockOutlined />} type="password" placeholder="Password" />
-      </Form.Item>
-      <Form.Item>
-        <Flex justify="space-between" align="center">
-          <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Remember me</Checkbox>
+    <div>
+      <Card title="Авторизация">
+        <Form name="normal_login" initialValues={{ remember: true }} onFinish={onFinish}>
+          <Form.Item
+            name="username"
+            rules={[{ required: true, message: 'Пожалуйста, введите логин!' }]}
+          >
+            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Логин" />
           </Form.Item>
-          <Link href="">Forgot password</Link>
-        </Flex>
-      </Form.Item>
+          <Form.Item
+            name="password"
+            rules={[{ required: true, message: 'Пожалуйста, введите пароль!' }]}
+          >
+            <Input
+              prefix={<LockOutlined className="site-form-item-icon" />}
+              type="password"
+              placeholder="Пароль"
+            />
+          </Form.Item>
 
-      <Form.Item>
-        <Button block type="primary" htmlType="submit">
-          Log in
-        </Button>
-        or
-        <Link href="./registration">Register now!</Link>
-      </Form.Item>
-    </Form>
+          <Form.Item>
+            <Button type="primary" htmlType="submit" block>
+              Войти
+            </Button>
+          </Form.Item>
+        </Form>
+      </Card>
+    </div>
   );
 };
 
-export default Login;
+export default LoginPage;

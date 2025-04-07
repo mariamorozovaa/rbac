@@ -1,9 +1,10 @@
 'use client';
 
 import { Typography, Image, Space, Badge } from 'antd';
+import { useRouter } from 'next/navigation';
 import { Layout, theme, Dropdown } from 'antd';
 import Link from 'next/link';
-import { UserOutlined, BellOutlined, SettingOutlined } from '@ant-design/icons';
+import { UserOutlined, BellOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
 import { Avatar, MenuProps } from 'antd';
 
 const { Header } = Layout;
@@ -11,9 +12,16 @@ const { Header } = Layout;
 const { Text } = Typography;
 
 export default function AppHeader() {
+  const router = useRouter();
+
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+  const handleLogout = () => {
+    localStorage.removeItem('isAuthenticated');
+    router.push('/login');
+  };
 
   const items: MenuProps['items'] = [
     {
@@ -34,6 +42,11 @@ export default function AppHeader() {
       key: '3',
       label: 'Настройки',
       icon: <SettingOutlined />,
+    },
+    {
+      key: '4',
+      label: 'Выйти',
+      icon: <LogoutOutlined />,
     },
   ];
 
@@ -66,7 +79,7 @@ export default function AppHeader() {
           <Badge count={5}>
             <BellOutlined style={{ color: colorBgContainer, fontSize: 24 }} />
           </Badge>
-          <Dropdown menu={{ items }}>
+          <Dropdown menu={{ items, onClick: handleLogout }}>
             <a onClick={(e) => e.preventDefault()}>
               <Space>
                 <Avatar
