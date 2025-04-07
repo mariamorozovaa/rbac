@@ -1,98 +1,95 @@
 'use client';
 
 import { useRouter, usePathname } from 'next/navigation';
-import { Layout, Menu, MenuProps } from 'antd';
+import { Layout, Menu } from 'antd';
 import {
   TableOutlined,
   ProfileOutlined,
   WarningOutlined,
   CheckCircleOutlined,
 } from '@ant-design/icons';
-import { useState, useMemo, useCallback } from 'react';
-
-type MenuItem = Required<MenuProps>['items'][number];
+import { useState, useEffect, useMemo, useCallback } from 'react';
 
 const AppSider = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const [openKeys, setOpenKeys] = useState<string[]>([]);
+  const [mounted, setMounted] = useState(false);
 
-  const [items, parentMap] = useMemo(() => {
-    const parentMap = new Map<string, string>();
+  const items = useMemo(
+    () => [
+      {
+        key: 'request',
+        label: 'Заявки',
+        icon: <TableOutlined />,
+        children: [
+          { key: 'incoming', label: 'Входящие' },
+          { key: 'outgoing', label: 'Исходящие' },
+          { key: 'all', label: 'Все заявки' },
+        ],
+      },
 
-    const getItem = (
-      label: string,
-      key: string,
-      icon?: React.ReactNode,
-      children?: MenuItem[]
-    ): MenuItem => {
-      if (children) {
-        children.forEach((child) => {
-          if (child && child.key) {
-            parentMap.set(child.key as string, key);
-          }
-        });
-      }
+      {
+        key: 'management',
+        label: 'Управление',
+        icon: <ProfileOutlined />,
+        children: [
+          { key: 'users', label: 'Пользователи' },
+          { key: 'roles', label: 'Роли' },
+          { key: 'systems', label: 'Системы' },
+        ],
+      },
+      {
+        key: 'edit',
+        label: 'Изменения',
+        icon: <WarningOutlined />,
+        children: [
+          { key: 'logs', label: 'Логирование' },
+          { key: 'reports', label: 'Отчеты' },
+        ],
+      },
+      {
+        key: 'about',
+        label: 'О системе',
+        icon: <CheckCircleOutlined />,
+        children: [
+          { key: 'docs', label: 'Документы' },
+          { key: 'video', label: 'Видео' },
+          { key: 'updates', label: 'Обновления' },
+        ],
+      },
+    ],
+    []
+  );
 
-      return {
-        key,
-        icon,
-        children,
-        label,
-        type: children ? 'subMenu' : 'item',
-      } as MenuItem;
-    };
+  useEffect(() => {
+    setMounted(true);
+    const currentKey = pathname.split('/')[1];
+    if (!currentKey) return;
 
-    const menuItems: MenuItem[] = [
-      getItem('Заявки', 'request', <TableOutlined />, [
-        getItem('Входящие', 'incoming'),
-        getItem('Исходящие', 'outgoing'),
-        getItem('Все заявки', 'all'),
-      ]),
-      getItem('Управление', 'management', <ProfileOutlined />, [
-        getItem('Пользователи', 'users'),
-        getItem('Роли', 'roles'),
-        getItem('Системы', 'systems'),
-      ]),
-      getItem('Изменения', 'edit', <WarningOutlined />, [
-        getItem('Логирование', 'logs'),
-        getItem('Отчеты', 'reports'),
-      ]),
-      getItem('О системе', 'about', <CheckCircleOutlined />, [
-        getItem('Документы', 'docs'),
-        getItem('Видео', 'video'),
-        getItem('Обновления', 'updates'),
-      ]),
-    ];
+    const parentKey = items.find((item) =>
+      item.children?.some((child) => child.key === currentKey)
+    )?.key;
 
-    return [menuItems, parentMap];
-  }, []);
-
-  const [{ current, openKeys }, setMenuState] = useState(() => {
-    const currentKey = pathname.slice(1);
-    const parentKey = currentKey ? parentMap.get(currentKey) : null;
-    return {
-      current: currentKey || '',
-      openKeys: parentKey ? [parentKey] : ['request'],
-    };
-  });
+    setOpenKeys(() => (parentKey ? [parentKey as string] : []));
+  }, [pathname, items]);
 
   const handleMenuClick = useCallback(
     ({ key }: { key: string }) => {
-      setMenuState({
-        current: key,
-        openKeys: [parentMap.get(key) || 'request'],
-      });
       router.push(`/${key}`);
     },
-    [parentMap, router]
+    [router]
   );
 
+  // Оптимизированный обработчик без задержки
   const handleOpenChange = useCallback((keys: string[]) => {
-    setMenuState((prev) => ({
-      ...prev,
-      openKeys: keys.length ? [keys[keys.length - 1]] : [],
-    }));
+    const lastOpenKey = keys[keys.length - 1];
+    setOpenKeys(lastOpenKey ? [lastOpenKey] : []);
   }, []);
+
+  if (!mounted) {
+    return <Layout.Sider width={250} theme="light" style={{ visibility: 'hidden' }} />;
+  }
 
   return (
     <Layout.Sider
@@ -109,18 +106,71 @@ const AppSider = () => {
     >
       <Menu
         mode="inline"
-        selectedKeys={[current]}
+        selectedKeys={[pathname.split('/')[1] || '']}
         openKeys={openKeys}
         onOpenChange={handleOpenChange}
         items={items}
         onClick={handleMenuClick}
         style={{ height: '100%', borderRight: 0 }}
+        motion={{
+          motionName: 'ant-slide-up',
+          motionAppear: false,
+          motionEnter: true,
+          motionLeave: true,
+          motionDeadline: 0,
+          leavedClassName: 'ant-menu-submenu-hidden',
+        }}
       />
     </Layout.Sider>
   );
 };
 
 export default AppSider;
+
+// const items: MenuItem[] = useMemo(
+//   () => [
+//     {
+//       key: 'request',
+//       label: 'Заявки',
+//       icon: <TableOutlined />,
+//       children: [
+//         { key: 'incoming', label: 'Входящие' },
+//         { key: 'outgoing', label: 'Исходящие' },
+//         { key: 'all', label: 'Все заявки' },
+//       ],
+//     },
+//     {
+//       key: 'management',
+//       label: 'Управление',
+//       icon: <ProfileOutlined />,
+//       children: [
+//         { key: 'users', label: 'Пользователи' },
+//         { key: 'roles', label: 'Роли' },
+//         { key: 'systems', label: 'Системы' },
+//       ],
+//     },
+//     {
+//       key: 'edit',
+//       label: 'Изменения',
+//       icon: <WarningOutlined />,
+//       children: [
+//         { key: 'logs', label: 'Логирование' },
+//         { key: 'reports', label: 'Отчеты' },
+//       ],
+//     },
+//     {
+//       key: 'about',
+//       label: 'О системе',
+//       icon: <CheckCircleOutlined />,
+//       children: [
+//         { key: 'docs', label: 'Документы' },
+//         { key: 'video', label: 'Видео' },
+//         { key: 'updates', label: 'Обновления' },
+//       ],
+//     },
+//   ],
+//   []
+// );
 
 // const items: MenuItem[] = [
 //   {

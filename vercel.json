@@ -1,15 +1,10 @@
 {
-  "version": 2,
-  "builds": [
+  "rewrites": [{ "source": "/:path*", "destination": "/:path*" }],
+  "headers": [
     {
-      "src": "package.json",
-      "use": "@vercel/next"
+      "source": "/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }]
     }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/"
-    }
-  ]
+  "framework": "nextjs"
 }

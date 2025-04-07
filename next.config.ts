@@ -1,15 +1,13 @@
-import type { NextConfig } from 'next';
-
-const nextConfig: NextConfig = {
-  /* config options here */
-};
-
-module.exports = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   reactStrictMode: true,
-  // Удалите или закомментируйте:
-  // experimental: {
-  //   reactCompiler: true,
-  // },
+  transpilePackages: ['antd'],
+  trailingSlash: true,
+  output: 'export',
+  assetPrefix: '/',
+  images: {
+    unoptimized: true,
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
