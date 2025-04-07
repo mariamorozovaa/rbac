@@ -82,7 +82,7 @@ const AppSider = () => {
       current: key,
       openKeys: [parentMap.get(key) || 'request']
     });
-    router.replace(`/${key}`);
+    router.push(`/${key}`);
   }, [parentMap, router]);
 
   const handleOpenChange = useCallback((keys: string[]) => {
