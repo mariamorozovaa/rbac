@@ -3,6 +3,9 @@
 import { Layout, Typography, Breadcrumb, theme, Card, Col, Row } from 'antd';
 import { Button, Flex } from 'antd';
 import { List } from 'antd';
+import { Modal } from 'antd';
+import React, { useState } from 'react';
+import FormReqSelf from './FormReqSelf';
 
 const data = [
   'Racing car sprays burning fuel into crowd.',
@@ -16,6 +19,11 @@ export default function AppLayout() {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  const [isFormVisible, setIsFormVisible] = useState(false);
+
+  const showForm = () => setIsFormVisible(true);
+  const closeForm = () => setIsFormVisible(false);
 
   return (
     <Layout>
@@ -43,7 +51,13 @@ export default function AppLayout() {
           }}
         >
           <Flex gap="small" wrap style={{ gap: 24, display: 'flex' }}>
-            <Button type="primary">Запросить доступ для себя</Button>
+            <Button type="primary" onClick={showForm}>
+              Запросить доступ для себя
+            </Button>
+            <Modal title="Форма запроса" open={isFormVisible} onCancel={closeForm} footer={null}>
+              {' '}
+              <FormReqSelf onClose={closeForm} />
+            </Modal>
             <Button type="primary">Запросить доступ для других</Button>
             <Button type="primary">Отозвать доступ</Button>
             <Button type="primary">Мои доступы</Button>

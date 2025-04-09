@@ -3,3 +3,10 @@
   padding: 0;
   margin: 0;
 }
+
+/* .ant-menu-submenu {
+  transition: all 0.15s ease-out !important;
+}
+.ant-menu-submenu > .ant-menu {
+  transition: all 0.15s ease-out !important;
+} */
