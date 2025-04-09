@@ -5,7 +5,6 @@ import { Breadcrumb, Layout, theme } from 'antd';
 import TableUser from '../../tables/UsersTable';
 import AppSider from '../../../components/AppSider';
 import AppHeader from '../../../components/AppHeader';
-import Link from 'next/link';
 
 const { Header, Content } = Layout;
 
@@ -25,14 +24,14 @@ export default function IncomingRequest() {
               style={{ margin: '16px 0' }}
               items={[
                 {
-                  title: <Link href="/">Заявки</Link>,
+                  title: 'Изменения',
                 },
                 {
-                  title: 'Все заявки',
+                  title: 'Отчеты',
                 },
               ]}
             />
-            <Typography.Title level={4}>Все заявки</Typography.Title>
+            <Typography.Title level={4}>Отчеты</Typography.Title>
           </Header>
           <Content style={{ margin: '0 16px', paddingTop: '16px' }}>
             <div

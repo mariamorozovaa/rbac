@@ -7,25 +7,25 @@ import { useState } from 'react';
 interface DataType {
   key: React.Key;
   name: string;
-  address: string;
   rang: string;
   place: string;
+  address: string;
 }
 
 const columns: TableColumnsType<DataType> = [
   {
     title: 'ФИО',
     dataIndex: 'name',
-    filters: [
-      {
-        text: 'Иванов',
-        value: 'Иванов',
-      },
-      {
-        text: 'Петров',
-        value: 'Петров',
-      },
-    ],
+    // filters: [
+    //   {
+    //     text: 'Иванов',
+    //     value: 'Иванов',
+    //   },
+    //   {
+    //     text: 'Петров',
+    //     value: 'Петров',
+    //   },
+    // ],
     filterMode: 'tree',
     filterSearch: true,
     onFilter: (value, record) => record.name.includes(value as string),

@@ -5,7 +5,9 @@ import { useRouter } from 'next/navigation';
 import { Layout, theme, Dropdown } from 'antd';
 import Link from 'next/link';
 import { UserOutlined, BellOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
-import { Avatar, MenuProps } from 'antd';
+import { Avatar } from 'antd';
+import React from 'react';
+import type { MenuProps } from 'antd';
 
 const { Header } = Layout;
 
@@ -22,6 +24,25 @@ export default function AppHeader() {
     localStorage.removeItem('isAuthenticated');
     router.push('/login');
   };
+
+  const onClick = () => {
+    router.replace('/all');
+  };
+
+  const itemsNotif: MenuProps['items'] = [
+    {
+      key: '1',
+      label: <a onClick={onClick}>Заявка №532 отправлена на согласование владельцу ИРС</a>,
+    },
+    {
+      key: '2',
+      label: <a onClick={onClick}>Заявка №531 отклонена</a>,
+    },
+    {
+      key: '3',
+      label: <a onClick={onClick}>Заявка №530 пришла на согласование</a>,
+    },
+  ];
 
   const items: MenuProps['items'] = [
     {
@@ -45,7 +66,7 @@ export default function AppHeader() {
     },
     {
       key: '4',
-      label: 'Выйти',
+      label: <a onClick={handleLogout}>Выйти</a>,
       icon: <LogoutOutlined />,
     },
   ];
@@ -76,10 +97,17 @@ export default function AppHeader() {
           </Typography.Title>
         </Link>
         <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
-          <Badge count={5}>
-            <BellOutlined style={{ color: colorBgContainer, fontSize: 24 }} />
-          </Badge>
-          <Dropdown menu={{ items, onClick: handleLogout }}>
+          <Dropdown menu={{ items: itemsNotif }}>
+            <Badge count={5}>
+              <a onClick={(e) => e.preventDefault()}>
+                <Space>
+                  <BellOutlined style={{ color: colorBgContainer, fontSize: 24 }} />
+                </Space>
+              </a>
+            </Badge>
+          </Dropdown>
+
+          <Dropdown menu={{ items }}>
             <a onClick={(e) => e.preventDefault()}>
               <Space>
                 <Avatar

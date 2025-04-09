@@ -83,7 +83,7 @@ const LoginPage: React.FC = () => {
             <Button type="primary" htmlType="submit" block>
               Войти
             </Button>
-            или <Link href="">Зарегистрироваться сейчас</Link>
+            или <Link href="/registration">Зарегистрироваться сейчас</Link>
           </Form.Item>
 
           <Form.Item>
