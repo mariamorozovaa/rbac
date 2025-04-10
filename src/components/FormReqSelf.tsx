@@ -12,7 +12,6 @@ import {
   Form,
   Input,
   InputNumber,
-  Radio,
   Select,
   Switch,
   TreeSelect,
@@ -20,7 +19,7 @@ import {
 
 type SizeType = Parameters<typeof Form>[0]['size'];
 interface FormReqSelfProps {
-  onClose: () => void; // Добавляем пропс для закрытия формы
+  onClose: () => void;
 }
 
 const FormReqSelf: React.FC<FormReqSelfProps> = ({ onClose }) => {
@@ -34,9 +33,8 @@ const FormReqSelf: React.FC<FormReqSelfProps> = ({ onClose }) => {
 
   const openNotificationWithIcon = (type: NotificationType) => {
     api[type]({
-      message: 'Notification Title',
-      description:
-        'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+      message: 'Заявка успешно создана',
+      description: 'После согласования заявки доступ будет предоставлен',
     });
     onClose();
   };
@@ -52,13 +50,6 @@ const FormReqSelf: React.FC<FormReqSelfProps> = ({ onClose }) => {
       style={{ maxWidth: 600 }}
     >
       {contextHolder}
-      <Form.Item label="Form Size" name="size">
-        <Radio.Group>
-          <Radio.Button value="small">Small</Radio.Button>
-          <Radio.Button value="default">Default</Radio.Button>
-          <Radio.Button value="large">Large</Radio.Button>
-        </Radio.Group>
-      </Form.Item>
       <Form.Item label="Input">
         <Input />
       </Form.Item>

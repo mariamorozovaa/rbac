@@ -2,7 +2,7 @@
 
 import { Typography } from 'antd';
 import { Breadcrumb, Layout, theme } from 'antd';
-import TableUser from '../../tables/UsersTable';
+import OutReqTable from '../../tables/OutReqTable';
 import AppSider from '../../../components/AppSider';
 import AppHeader from '../../../components/AppHeader';
 import Link from 'next/link';
@@ -43,7 +43,7 @@ export default function IncomingRequest() {
                 borderRadius: borderRadiusLG,
               }}
             >
-              <TableUser />
+              <OutReqTable />
             </div>
           </Content>
         </Layout>

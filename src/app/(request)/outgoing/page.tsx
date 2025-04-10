@@ -2,7 +2,7 @@
 
 import { Typography } from 'antd';
 import { Breadcrumb, Layout, theme } from 'antd';
-import TableUser from '../../tables/UsersTable';
+import OutReqTable from '../../tables/OutReqTable';
 import AppHeader from '@/components/AppHeader';
 import AppSider from '@/components/AppSider';
 import Link from 'next/link';
@@ -44,7 +44,7 @@ const OutGoingRequest: React.FC = () => {
                 borderRadius: borderRadiusLG,
               }}
             >
-              <TableUser />
+              <OutReqTable />
             </div>
           </Content>
         </Layout>
