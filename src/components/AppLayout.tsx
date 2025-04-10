@@ -6,7 +6,9 @@ import { List } from 'antd';
 import { Modal } from 'antd';
 import React, { useState } from 'react';
 import FormReqSelf from './FormReqSelf';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
+import '@ant-design/v5-patch-for-react-19';
 
 const data = [
   'Racing car sprays burning fuel into crowd.',
@@ -17,6 +19,8 @@ const data = [
 ];
 
 export default function AppLayout() {
+  const router = useRouter();
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -25,6 +29,12 @@ export default function AppLayout() {
 
   const showForm = () => setIsFormVisible(true);
   const closeForm = () => setIsFormVisible(false);
+
+  function onClickMyReq() {
+    {
+      router.replace('/outgoing');
+    }
+  }
 
   return (
     <Layout>
@@ -73,9 +83,9 @@ export default function AppLayout() {
               {' '}
               <FormReqSelf onClose={closeForm} />
             </Modal>
-            <Link href={'./outgoing'}>
-              <Button type="primary">Мои доступы</Button>
-            </Link>
+            <Button type="primary" onClick={onClickMyReq}>
+              Мои доступы
+            </Button>
           </Flex>
         </div>
         <Row gutter={16}>
