@@ -6,6 +6,7 @@ import { List } from 'antd';
 import { Modal } from 'antd';
 import React, { useState } from 'react';
 import FormReqSelf from './FormReqSelf';
+import Link from 'next/link';
 
 const data = [
   'Racing car sprays burning fuel into crowd.',
@@ -58,9 +59,23 @@ export default function AppLayout() {
               {' '}
               <FormReqSelf onClose={closeForm} />
             </Modal>
-            <Button type="primary">Запросить доступ для других</Button>
-            <Button type="primary">Отозвать доступ</Button>
-            <Button type="primary">Мои доступы</Button>
+            <Button type="primary" onClick={showForm}>
+              Запросить доступ для других
+            </Button>
+            <Modal title="Форма запроса" open={isFormVisible} onCancel={closeForm} footer={null}>
+              {' '}
+              <FormReqSelf onClose={closeForm} />
+            </Modal>
+            <Button type="primary" onClick={showForm}>
+              Отозвать доступ
+            </Button>
+            <Modal title="Форма запроса" open={isFormVisible} onCancel={closeForm} footer={null}>
+              {' '}
+              <FormReqSelf onClose={closeForm} />
+            </Modal>
+            <Link href={'./outgoing'}>
+              <Button type="primary">Мои доступы</Button>
+            </Link>
           </Flex>
         </div>
         <Row gutter={16}>
