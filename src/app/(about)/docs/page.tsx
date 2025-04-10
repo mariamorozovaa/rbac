@@ -7,16 +7,10 @@ import AppHeader from '../../../components/AppHeader';
 import React from 'react';
 import { DeleteOutlined, UploadOutlined } from '@ant-design/icons';
 import type { UploadProps } from 'antd';
-import { Button, Upload, Flex } from 'antd';
-import { Input, Space } from 'antd';
-import type { GetProps } from 'antd';
+import { Button, Upload } from 'antd';
+import AppSearch from '@/components/AppSearch';
 
 const { Header, Content } = Layout;
-
-type SearchProps = GetProps<typeof Input.Search>;
-
-const { Search } = Input;
-const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value);
 
 export default function IncomingRequest() {
   const props: UploadProps = {
@@ -87,21 +81,7 @@ export default function IncomingRequest() {
             <Typography.Title level={4}>{nameOfPage}</Typography.Title>
           </Header>
           <Content style={{ margin: '0 16px', paddingTop: '16px' }}>
-            <div
-              style={{
-                padding: 24,
-                background: colorBgContainer,
-                borderRadius: borderRadiusLG,
-                marginBottom: 24,
-              }}
-            >
-              <Flex gap="middle" style={{ display: 'flex', alignItems: 'center' }}>
-                <Typography.Text style={{ whiteSpace: 'nowrap' }}>Документ:</Typography.Text>
-                <Space.Compact style={{ width: '100%' }}>
-                  <Search placeholder="Наименование" onSearch={onSearch} enterButton />
-                </Space.Compact>
-              </Flex>
-            </div>
+            <AppSearch pageName="Документ" />
             <div
               style={{
                 padding: 24,

@@ -12,8 +12,7 @@ const LoginPage: React.FC = () => {
 
   const onFinish = (values: { username: string; password: string }) => {
     if (values.username === 'admin' && values.password === 'admin') {
-      message.success('Авторизация успешна!');
-      // Сохраняем статус авторизации в localStorage
+      // message.success('Авторизация успешна!');
       localStorage.setItem('isAuthenticated', 'true');
       router.push('/');
     } else {

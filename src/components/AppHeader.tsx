@@ -98,7 +98,7 @@ export default function AppHeader() {
         </Link>
         <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
           <Dropdown menu={{ items: itemsNotif }}>
-            <Badge count={5}>
+            <Badge count={itemsNotif.length}>
               <a onClick={(e) => e.preventDefault()}>
                 <Space>
                   <BellOutlined style={{ color: colorBgContainer, fontSize: 24 }} />
